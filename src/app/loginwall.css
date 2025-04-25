@@ -1,0 +1,80 @@
+.login-container{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 400px;
+    max-width: 100%;
+    padding: 1rem;
+    border: 2px solid var(--mid);
+    border-radius: 1rem;
+    gap: 1rem;
+    background-color: var(--background-2);
+  }
+
+  .login-container:last-child{
+    margin-top: 2rem;
+  }
+  
+  .login-input-label-container{
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+  }
+  
+  .password-input-container{
+    display: flex;
+    flex-direction: row;
+    align-items: stretch;
+    border: 2px solid var(--mid);
+    border-radius: 0.5rem;
+    overflow: hidden;
+  }
+  
+  .password-input{
+    width: 90%;
+    height: 100%;
+    padding: 0.5rem 1rem;
+  }
+  
+  .password-toggle{
+    width: 10%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5rem;
+    box-shadow: 0 0 0 1px var(--mid);
+    cursor: pointer;
+  }
+  
+  .checkbox-pill {
+    width: 4rem;
+    height: 2rem;
+    border-radius: 0.5rem;
+    background-color: var(--foreground);
+    position: relative;
+    cursor: pointer;
+  }
+  
+  .checkbox-pill-open{
+    background-color: var(--foreground);
+  }
+  
+  .checkbox-toggle{
+    position: absolute;
+    width: 1.3rem;
+    height: 1.3rem;
+    top: 0.35rem;
+    left: 0.4rem;
+    background-color: var(--background);
+    border-radius: 0.2rem;
+  }
+  
+  .checkbox-toggle-open{
+    transform: translateX(1.8rem);
+  }
+  
+  .form-error{
+    margin: -0.5rem 0 -0.5rem 0;
+    color: red;
+  }
