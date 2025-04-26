@@ -8,14 +8,20 @@ export const AuthProvider = ({ children }) => {
 
     const [auth, setAuth] = useState(null);
 
+    let tokenCheck = () => {
+        setTimeout(() => {
+            let token = localStorage.getItem('token')
+            if (token !== null && token !== "") {
+                setAuth(true)
+            }
+            else {
+                setAuth(false)
+            }
+        }, 100)
+    }
+
     useEffect(() => {
-        let token = localStorage.getItem('token')
-        if (token !== null && token !== "") {
-            setAuth(true)
-        }
-        else {
-            setAuth(false)
-        }
+        tokenCheck();
     }, [])
 
     const toggleAuth = () => {

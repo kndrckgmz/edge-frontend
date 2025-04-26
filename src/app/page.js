@@ -11,14 +11,12 @@ export default function Home() {
   const { auth } = useAuth();
 
   return (
-    <div className="w-full min-h-screen flex flex-col items-center justify-center p-4 pb-26">
-      <div className="w-4xl max-w-full flex flex-col items-center">
-        {auth === null
-          ? <Pageloader />
-          : auth === true
-            ? <Dashboard />
-            : <LoginWall />}
-      </div>
-    </div>
+    <>
+      {auth === null
+        ? <Pageloader />
+        : auth === true
+          ? <Dashboard />
+          : <LoginWall />}
+    </>
   );
 }

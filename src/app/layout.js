@@ -18,7 +18,11 @@ export default function RootLayout({ children }) {
     <html lang="en">
       <body className={`${outfitSans.className} antialiased`}>
         <AuthProvider>
-          {children}
+          <div className="w-full min-h-screen flex flex-col items-center justify-center">
+            <div className="w-4xl max-w-full flex flex-col items-center">
+              {children}
+            </div>
+          </div>
           <Nav />
         </AuthProvider>
       </body>
