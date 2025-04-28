@@ -76,12 +76,12 @@ const Transactions = () => {
     return (
         transactions.length === 0
             ? <div className='min-h-80 grid place-items-center'>
-                <span class="component-loader"></span>
+                <span className="-translate-8 component-loader"></span>
             </div>
             : <div className='flex flex-col gap-4 p-4'>
                 <div>Transactions</div>
                 {transactions.map((txn, index) => (
-                    <div className='flex flex-row justify-between p-4 border-2 border-[var(--mid)] rounded-2xl' key={index}>
+                    <div className='bg-[var(--background-2)] flex flex-row justify-between p-4 border-2 border-[var(--mid)] rounded-2xl' key={index}>
                         <div>
                             <div className='text-lg'>{txn.amount}</div>
                             <div className='text-neutral-500 text-xs'>{txn.transactionTime} - {txn.transactionDate}</div>

@@ -75,6 +75,8 @@
   }
   
   .form-error{
+    height: 1rem;
+    font-size: small;
     margin: -0.5rem 0 -0.5rem 0;
-    color: red;
+    color: rgb(164, 41, 41);
   }

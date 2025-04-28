@@ -37,11 +37,29 @@ const Login = ({ passwordToggle, handlePasswordToggle, setRegisterActive }) => {
     const [password, setPassword] = useState("");
     const [error, setError] = useState("")
 
-    const { auth, toggleAuth } = useAuth();
+    const { toggleAuth } = useAuth();
+
+    const handleError = (err) => {
+        setError(err)
+        setTimeout(() => {
+            setError("")
+        }, 3000)
+    }
 
     async function handlelogin() {
-        localStorage.setItem('token', 'ey0sdfnslkdsfljssldkf')
-        toggleAuth()
+        if (email === "") {
+            handleError("Enter Email")
+        }
+        else if (password === "") {
+            handleError("Enter Password")
+        }
+        else if (password !== "test123") {
+            handleError("Wrong Password")
+        }
+        else {
+            localStorage.setItem('token', 'ey0sdfnslkdsfljssldkf')
+            toggleAuth()
+        }
     }
 
     return (
@@ -77,7 +95,7 @@ const Login = ({ passwordToggle, handlePasswordToggle, setRegisterActive }) => {
     )
 }
 
-const Register = ({ toggleAuth, passwordToggle, handlePasswordToggle, setRegisterActive }) => {
+const Register = ({ passwordToggle, handlePasswordToggle, setRegisterActive }) => {
 
     const [checkboxToggle, setCheckboxToggle] = useState(false);
     const [name, setName] = useState("");
@@ -86,8 +104,32 @@ const Register = ({ toggleAuth, passwordToggle, handlePasswordToggle, setRegiste
     const [confirmpassword, setConfirmPassword] = useState("");
     const [error, setError] = useState("")
 
+    const { toggleAuth } = useAuth();
+
+    const handleError = (err) => {
+        setError(err)
+        setTimeout(() => {
+            setError("")
+        }, 3000)
+    }
+
     async function handleRegister() {
-        toggleAuth();
+        if (name === "") {
+            handleError("Enter Name")
+        }
+        else if (email === "") {
+            handleError("Enter Email")
+        }
+        else if (password === "") {
+            handleError("Enter Password")
+        }
+        else if (confirmpassword !== password) {
+            handleError("Passwords to not match")
+        }
+        else {
+            localStorage.setItem('token', 'ey0sdfnslkdsfljssldkf')
+            toggleAuth()
+        }
     }
 
     return (
