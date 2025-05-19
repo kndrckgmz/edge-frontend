@@ -25,6 +25,27 @@
   }
 }
 
+
+*::-webkit-scrollbar-track
+{
+  border-radius: 50px;
+	background-color: var(--foreground);
+}
+
+*::-webkit-scrollbar
+{
+	width: 5px;
+  height: 5px;
+  border-radius: 50px;
+	/* background-color: var(--foreground-2); */
+}
+
+*::-webkit-scrollbar-thumb
+{
+  border-radius: 50px;
+	background-color: var(--mid);
+}
+
 *{
   transition: all 0.3s ease;
 }

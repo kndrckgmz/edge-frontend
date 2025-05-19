@@ -5,6 +5,7 @@ import Image from "next/image";
 import { Icon } from "@iconify/react";
 import { useEffect, useState } from "react";
 import { useAuth } from "@/context/AuthContext";
+import axios from "axios";
 
 export default function LoginWall({ toggleAuth }) {
 
@@ -35,7 +36,8 @@ const Login = ({ passwordToggle, handlePasswordToggle, setRegisterActive }) => {
 
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
-    const [error, setError] = useState("")
+    const [error, setError] = useState("");
+    const [loading, setLoading] = useState(false);
 
     const { toggleAuth } = useAuth();
 
@@ -45,6 +47,35 @@ const Login = ({ passwordToggle, handlePasswordToggle, setRegisterActive }) => {
             setError("")
         }, 3000)
     }
+
+    const handleLogin = () => {
+        // e.preventDefault();
+        setError('');
+        setLoading(true);
+
+        axios.post('https://securebankingapi.onrender.com/api/auth/login', {
+            email: email,
+            password: password,
+        })
+            .then((response) => {
+                // Handle successful login
+                // console.log('Login successful:', response.data);
+                localStorage.setItem('token', response.data.token);
+                localStorage.setItem('user', JSON.stringify(response.data.user));
+                // setSuccessMessage('Login successful!');
+                // You might want to redirect the user or store the token here
+            })
+            .catch((error) => {
+                console.error('Login failed:', error.response ? error.response.data : error.message);
+                setError(
+                    error.response?.data?.message || 'Login failed. Please check your credentials.'
+                );
+            })
+            .finally(() => {
+                toggleAuth()
+                setLoading(false);
+            });
+    };
 
     async function handlelogin() {
         if (email === "") {
@@ -57,8 +88,9 @@ const Login = ({ passwordToggle, handlePasswordToggle, setRegisterActive }) => {
             handleError("Wrong Password")
         }
         else {
-            localStorage.setItem('token', 'ey0sdfnslkdsfljssldkf')
-            toggleAuth()
+            handleLogin()
+            // localStorage.setItem('token', 'ey0sdfnslkdsfljssldkf')
+            // toggleAuth()
         }
     }
 
@@ -89,7 +121,12 @@ const Login = ({ passwordToggle, handlePasswordToggle, setRegisterActive }) => {
                 </div>
             </div>
             <div className="form-error">{error}</div>
-            <button onClick={handlelogin} className="primary-button w-full" type="submit">Login</button>
+            <button onClick={handlelogin} className="primary-button w-full" type="submit">
+                {loading
+                    ? "Loading..."
+                    : "Login"
+                }
+            </button>
             <button onClick={() => setRegisterActive(true)} className="secondary-button w-full">Register</button>
         </div>
     )
@@ -110,7 +147,7 @@ const Register = ({ passwordToggle, handlePasswordToggle, setRegisterActive }) =
         setError(err)
         setTimeout(() => {
             setError("")
-        }, 3000)
+        }, 5000)
     }
 
     async function handleRegister() {

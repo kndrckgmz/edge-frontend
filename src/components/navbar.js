@@ -12,6 +12,7 @@ export default function Nav() {
     const handleLogout = () => {
         toggleAuth()
         localStorage.removeItem("token");
+        localStorage.removeItem("user");
     }
 
     return (
